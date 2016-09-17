@@ -3,15 +3,19 @@
 
 provisioning tool
 ------------------------
-bash
 
+```bash
+bash
+```
 
 examples
 ----------
 
-to install jdk crate, 
+First `source programmer_bootstrap.sh` (which is currently blowing up :) )
 
-```
+Then to install jdk crate, 
+
+```bash
 $ installJdk
 ```
 

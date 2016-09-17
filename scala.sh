@@ -50,4 +50,3 @@ EOF
  showMessage "play" $PLAY_VERSION
 }
 
-installScala

@@ -3,9 +3,13 @@
 ################JDK#################################################
 ####################################################################
 
+DEFAULT_SOURCE_ROOT="$HOME"
+DEFAULT_INSTALLATION_DEST="/usr/local"
+
 installJdk(){
  JDK_VERSION="1.7.0"
-
+ JDK_LOCATION_SOURCE="$DEFAULT_SOURCE_ROOT/jdk$JDK_VERSION"
+  
  # Testing java installation
  command -v java -version >/dev/null 2>&1
  INSTALLED=$?
@@ -14,8 +18,11 @@ installJdk(){
  # Checking java if installed
  if [ -n "$INSTALLED" ] ; then
     JDK_DOWNLOAD_URL="http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz"
-    JDK_LOCATION_SOURCE="$DEFAULT_SOURCE_ROOT/JVM/JDK/JDK1.7.0/jdk$JDK_VERSION"
-
+   
+    if [ ! -e $JDK_LOCATION_SOURCE ]; then
+	echo "download JDK manually to $HOME first from oracle.com/technetwork/java/javase/downloads because Oracle is stupid SOAB.";
+        echo "example download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz"
+    else
     sudo mv $JDK_LOCATION_SOURCE  $DEFAULT_INSTALLATION_DEST
     sudo chmod 777 -R $DEFAULT_INSTALLATION_DEST/jdk1.7.0/
 
@@ -33,6 +40,7 @@ EOF
    echo "####################################################"
    echo "[info] : jdk $JDK_VERSION is installed successfully."
    echo "####################################################"
+ fi
  fi
 }
 
@@ -72,8 +80,31 @@ EOF
 
 installIntelliJ(){
 
-  SOURCE_LOCATION="$DEFAULT_SOURCE_ROOT/JVM/IDEs/idea/ideaIU-13.tar.gz"
-  DEST_FOLDER="idea-IU-133.193"
+# http://stackoverflow.com/a/30131216
+
+# Fetch the most recent version
+edition=C
+IDEA_VERSION=$(wget "https://www.jetbrains.com/intellij-repository/releases" -qO- | grep -P -o -m 1 "(?<=https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/BUILD/)[^/]+(?=/)")
+
+# Prepend base URL for download
+URL="https://download.jetbrains.com/idea/ideaI$edition-$IDEA_VERSION.tar.gz"
+
+echo $URL
+
+# Truncate filename
+FILE=$(basename ${URL})
+
+# Set download directory
+SOURCE_LOCATION="$DEFAULT_SOURCE_ROOT/$FILE"
+
+echo "Downloading idea-I$ed-$VERSION to $SOURCE_LOCATION..."
+
+# Download binary
+wget -cO ${SOURCE_LOCATION} ${URL} --read-timeout=5 --tries=0
+
+echo "Download complete!"
+
+DEST_FOLDER="idea-I$edition-$IDEA_VERSION"
 
   sudo tar -zxvf $SOURCE_LOCATION -C $DEFAULT_INSTALLATION_DEST
   sudo chmod 777 -R $DEFAULT_INSTALLATION_DEST/$DEST_FOLDER

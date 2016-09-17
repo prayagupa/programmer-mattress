@@ -1,8 +1,6 @@
 #!/bin/bash
 
-#DEFAULT_SOURCE_ROOT="/packup/repo.softwares"
 DEFAULT_SOURCE_ROOT="$HOME/"
-DEFAULT_SOURCE_ROOT_JVM="$HOME/"
 DEFAULT_INSTALLATION_DEST="/usr/local/"
 
 #########################################################################
