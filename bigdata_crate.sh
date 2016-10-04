@@ -1,13 +1,5 @@
 set -e
 
-installElasticsearch(){
-				VERSION_ES="1.1.0"
-				ES_HOME=$DEFAULT_INSTALLATION_DEST/elasticsearch-$ES_VERSION
-				sudo tar -zxvf $DEFAULT_SOURCE_ROOT_JVM/SolrLuceneES-BigData/elasticsearch-$VERSION_ES.tar.gz -C $DEFAULT_INSTALLATION_DEST
-				sudo chmod -R ugo+rw $ES_HOME
-          	                $ES_HOME/bin/plugin -i elasticsearch/marvel/latest
-}
-
 
 ##zookeper
 installZook(){
