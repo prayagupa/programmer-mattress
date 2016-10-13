@@ -31,7 +31,7 @@ Vagrant.configure(2) do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network "public_network"
+  config.vm.network "public_network", bridge: "Broadcom NetLink (TM) Gigabit Ethernet"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -44,7 +44,8 @@ Vagrant.configure(2) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
+     vb.name = "ProgrammerBase"
+     # Display the VirtualBox GUI when booting the machine
      vb.gui = true
  
      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -71,10 +72,11 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install apache2
   # SHELL
 
-# Install xfce and virtualbox additions
+  # Install xfce and virtualbox additions
   config.vm.provision "shell", inline: "sudo apt-get update"
   config.vm.provision "shell", inline: "sudo apt-get install -y xfce4 virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11"
   # Permit anyone to start the GUI
   config.vm.provision "shell", inline: "sudo sed -i 's/allowed_users=.*$/allowed_users=anybody/' /etc/X11/Xwrapper.config"
+
   config.vm.provision :shell, path: "scala.sh"
 end
