@@ -29,3 +29,9 @@ Needs to be updated to work seamlessly with vagrant.
 The crate scripts need to be made intuitive and easier to work with gradually with time.
 
 It will soon be a submoduled project on `prayagupd/dotfiles`.
+
+
+```
+vagrant up
+startxfce4
+```
