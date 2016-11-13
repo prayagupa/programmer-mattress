@@ -1,10 +1,10 @@
+DEFAULT_SOURCE_ROOT_JVM="$HOME"
+DEFAULT_INSTALLATION_DEST="/usr/local/"
 
 installScala(){
- DEFAULT_SOURCE_ROOT_JVM="$HOME"
- SCALA_VERSION="2.10.3"
+ SCALA_VERSION="2.11.8"
  WGET_URL="http://www.scala-lang.org/files/archive/scala-$SCALA_VERSION.tgz"
  SCALA_LOCATION_SOURCE="${DEFAULT_SOURCE_ROOT_JVM}/scala-$SCALA_VERSION.tgz"
- DEFAULT_INSTALLATION_DEST="/usr/local/"
  wget -O $SCALA_LOCATION_SOURCE --no-clobber $WGET_URL
 
  sudo tar -zxvf ${SCALA_LOCATION_SOURCE} -C ${DEFAULT_INSTALLATION_DEST}
@@ -14,7 +14,7 @@ installScala(){
   ###############################
   ########### SCALA #############
   ###############################
-  SCALA_HOME=/usr/local/scala-2.10.3
+  SCALA_HOME=/usr/local/scala-2.11.8
   export SCALA_HOME
   export PATH=$PATH:$SCALA_HOME/bin
 EOF
@@ -30,13 +30,14 @@ EOF
 
 }
 
+installScala
 
 installPlayFramework(){
-				PLAY_VERSION="2.2.2"
-				PLAY_URL="http://downloads.typesafe.com/play/$PLAY_VERSION/play-$PLAY_VERSION.zip"
-				wget $PLAY_URL  -P $DEFAULT_SOURCE_ROOT_JVM/scala/
-				sudo unzip  $DEFAULT_SOURCE_ROOT_JVM/scala/play-$PLAY_VERSION -d $DEFAULT_INSTALLATION_DEST
-        setPermissionRWE $DEFAULT_INSTALLATION_DEST/play-$PLAY_VERSION
+	PLAY_VERSION="2.2.2"
+	PLAY_URL="http://downloads.typesafe.com/play/$PLAY_VERSION/play-$PLAY_VERSION.zip"
+	wget $PLAY_URL  -P $DEFAULT_SOURCE_ROOT_JVM/scala/
+	sudo unzip  $DEFAULT_SOURCE_ROOT_JVM/scala/play-$PLAY_VERSION -d $DEFAULT_INSTALLATION_DEST
+ setPermissionRWE $DEFAULT_INSTALLATION_DEST/play-$PLAY_VERSION
  cat >> ~/.bash_profile <<'EOF'
   ###############################
   ########### play #############
