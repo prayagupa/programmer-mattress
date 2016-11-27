@@ -1,18 +1,20 @@
 installPlayFramework(){
-	PLAY_VERSION="2.2.2"
-	PLAY_URL="http://downloads.typesafe.com/play/$PLAY_VERSION/play-$PLAY_VERSION.zip"
-	wget $PLAY_URL  -P $DEFAULT_SOURCE_ROOT_JVM/scala/
-	sudo unzip  $DEFAULT_SOURCE_ROOT_JVM/scala/play-$PLAY_VERSION -d $DEFAULT_INSTALLATION_DEST
- setPermissionRWE $DEFAULT_INSTALLATION_DEST/play-$PLAY_VERSION
+	PLAY_VERSION="2.5.10"
+	PLAY_URL="https://downloads.typesafe.com/typesafe-activator/1.3.12/typesafe-activator-1.3.12.zip"
+	sudo wget $PLAY_URL  -P /usr/local/
+	sudo unzip  /usr/local/typesafe-activator-1.3.12.zip -d /usr/local/
+  sudo chmod -R 777 /usr/local/typesafe-activator-1.3.12
  cat >> ~/.bash_profile <<'EOF'
   ###############################
   ########### play #############
   ###############################
-  PLAY_HOME=/usr/local/play-2.2.2
+  PLAY_HOME=/usr/local/typesafe-activator-1.3.12
   export PLAY_HOME
   export PATH=$PATH:$PLAY_HOME/
 EOF
 
- reloadProfileConf
- showMessage "play" $PLAY_VERSION
+ source ~/.bash_profile
+ echo "Play-$PLAY_VERSION - streamy installed"
 }
+
+installPlayFramework
