@@ -1,6 +1,6 @@
 #https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-7-on-ubuntu-14-04-via-apt-get
 
-wget http://ftp.wayne.edu/apache/tomcat/tomcat-8/v8.5.12/bin/apache-tomcat-8.5.12.tar.gz
+wget http://archive.apache.org/dist/tomcat/tomcat-8/v8.5.12/bin/apache-tomcat-8.5.12.tar.gz
 tar zxvf apache-tomcat-8.5.12.tar.gz
 sudo mv apache-tomcat-8.5.12 /usr/local/
 sudo chmod -R 777 /usr/local/apache-tomcat-8.5.12
