@@ -1,9 +1,11 @@
-maven_version=3.3.9
+maven_version=3.5.0
 unzipped="apache-maven-$maven_version"
 file="apache-maven-$maven_version-bin.tar.gz"
-maven_url="http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/$file"
+maven_url="http://apache.mirrors.tds.net/maven/maven-3/$maven_version/binaries/$file"
 
+echo "..."
 echo "downloading from $maven_url"
+echo "..."
 
 wget $maven_url
 tar -zxvf $file
@@ -14,7 +16,7 @@ sudo chmod -R +x /usr/local/$unzipeped
   ###############################
   ########### maven##############
   ###############################
-  MAVEN_HOME=/usr/local/apache-maven-3.3.9
+  MAVEN_HOME=/usr/local/apache-maven-3.5.0
   export MAVEN_HOME
   export PATH=$PATH:$MAVEN_HOME/bin
 EOF
