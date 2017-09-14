@@ -1,12 +1,13 @@
-wget https://dl.bintray.com/sbt/native-packages/sbt/0.13.13/sbt-0.13.13.zip
-sudo unzip sbt-0.13.13.zip -d /usr/local/
-sudo mv /usr/local/sbt-launcher-packaging-0.13.13 /usr/local/sbtool
+sbt_version=0.13.9
+
+wget https://dl.bintray.com/sbt/native-packages/sbt/$sbt_version/sbt-$sbt_version.zip
+sudo unzip sbt-$sbt_version.zip -d /usr/local/
 
 cat >> ~/.bash_profile <<'EOF'
   ###############################
   ########### SBT #############
   ###############################
-  SCALA_HOME=/usr/local/sbtool
+  SBT_HOME=/usr/local/sbt
   export SBT_HOME
   export PATH=$PATH:$SBT_HOME/bin
 EOF
@@ -16,4 +17,5 @@ echo "[info] : reloading $HOME/.bash_profile."
 echo ""
 source ~/.bash_profile
 
-
+echo "remove sbt-${sbt_version}"
+rm sbt-$sbt_version.zip
